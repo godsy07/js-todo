@@ -1,0 +1,181 @@
+html {
+  background: url("./images/back3.jpg");
+  box-shadow: inset 0 0 0 2000px rgba(29, 19, 25, 0.5);
+  min-height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.container {
+  width: 600px;
+  min-height: 200px;
+  background: rgb(185, 66, 201);
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 120px;
+  border: 1px solid black;
+  border-radius: 60px;
+  position: relative;
+}
+.clear {
+  position: absolute;
+  right: 25px;
+  top: 12px;
+  background: rgb(100, 100, 100);
+  color: #fff;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+  border-radius: 50%;
+}
+.icon {
+  text-align: center;
+  margin: auto;
+  font-size: 22px;
+}
+.clear:hover {
+  cursor: pointer;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 50%;
+  animation: spin 1s linear 1;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Heading Starts */
+.head {
+  margin: auto;
+  width: 70%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px 0;
+  position: relative;
+}
+.add-heading {
+  display: inline-block;
+  width: 370px;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  /* border: 1px solid black; */
+  outline: none;
+  border-radius: 10px;
+}
+.edit-heading {
+  position: absolute;
+  font-size: 40px;
+  right: 0px;
+  top: 10px;
+  color: rgb(100, 100, 100, 0.5);
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/*  Heading Ends */
+/* Content Starts */
+.content {
+  width: 70%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 70px;
+}
+.complete {
+  color: rgb(62, 245, 7);
+}
+.todo-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.todo-list li {
+  padding: none;
+  position: relative;
+  font-size: 22px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+.list-item {
+  padding-left: 25px;
+}
+/* [id*="item"] {
+  color: red;
+} */
+/* [id^="item"] {
+  color: yellow;
+} */
+.check {
+  color: rgb(75, 250, 21);
+  height: 25px;
+  width: 25px;
+  background: white;
+  border-radius: 50%;
+}
+.uncheck {
+  color: rgb(84, 85, 84, 0.4);
+}
+.check-item {
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  font-size: 28px;
+  cursor: pointer;
+}
+.completed {
+  text-decoration: line-through;
+  box-shadow: inset 10px 40px 80px rgb(83, 82, 82, 0.5);
+}
+.edit {
+  position: absolute;
+  cursor: pointer;
+  right: 35px;
+  top: 5px;
+  font-size: 22px;
+  color: rgb(10, 105, 194);
+}
+.delete {
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 5px;
+  font-size: 22px;
+  color: rgb(255, 32, 32);
+}
+/* Content Ends */
+/* Input Starts */
+.input-list {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  min-height: 30px;
+}
+.input-list i {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-size: 27px;
+  color: blue;
+}
+.input-list input {
+  width: 100%;
+  height: 25px;
+  border-radius: 30px;
+  outline: none;
+  padding-left: 28px;
+  font-size: 17px;
+}
+.fa {
+  cursor: pointer;
+}
+/* Input Ends */
