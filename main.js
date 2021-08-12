@@ -99,8 +99,9 @@ function editItemFunction(editItem) {
   console.log("edit");
 }
 function deleteItemFunction(delItem) {
-  console.log(delItem.parentNode);
-  console.log("delete");
+  delId = delItem.parentNode.id.split('-')[1] - 1;
+  tempTodo.body.splice(delId,1)
+  delItem.parentNode.remove();
 }
 
 function viewTodoData() {
