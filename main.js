@@ -3,19 +3,12 @@ let tempTodo = {
   id: "head-1",
   heading: "Test Heading",
   body: [
-    {
-      id: "item-1",
-      listItem: "Go for a walk",
-      status: false,
-    },
-    {
-      id: "item-2",
-      listItem: "Attend Meeting",
-      status: true,
-    },
+    { id: "item-1", listItem: "Attend Meeting", status: false },
+    { id: "item-2", listItem: "Run a mile", status: true },
+    // { id: "item-3", listItem: "Go for a walk", status: false },
+    // { id: "item-4", listItem: "Learn WebDev", status: false },
   ],
 };
-
 // Query Selectors
 const addHeading = document.querySelector(".add-heading");
 const editHeading = document.querySelector(".edit-heading");
@@ -71,12 +64,15 @@ function inputItemFunction(e) {
   }
 }
 
-function checkItemFunction(listElement) {
-  const listId = listElement.parentNode.getAttribute("id");
+function checkItemFunction(e) {
+  // console.log(e);
+  const listId = e.path[1].getAttribute("id");
   tempTodo.body.map((el) => {
     if (el.id === listId) {
+      listElement = e.path[0];
       el.status = !el.status; // Completed Status changed
-      if (el.status) {
+      if (el.status === true) {
+        // console.log("true");
         listElement.parentNode.setAttribute("class", "completed");
         listElement.setAttribute(
           "class",
@@ -84,6 +80,7 @@ function checkItemFunction(listElement) {
         );
         // listElement.nextSibling.setAttribute("class", "list-item completed");
       } else {
+        // console.log("false");
         listElement.parentNode.setAttribute("class", "");
         listElement.setAttribute(
           "class",
@@ -94,16 +91,19 @@ function checkItemFunction(listElement) {
     }
   });
 }
+
 function editItemFunction(editItem) {
   console.log(editItem.parentNode);
   console.log("edit");
 }
-function deleteItemFunction(delItem) {
-  delId = delItem.parentNode.id.split('-')[1] - 1;
-  tempTodo.body.splice(delId,1)
-  delItem.parentNode.remove();
+function deleteItemFunction(e) {
+  // console.log(e);
+  delId = e.path[1].getAttribute("id").split("-")[1] - 1; // Fetch index of array
+  tempTodo.body.splice(delId, 1); // Delete data from tempTodo variable
+  e.path[1].remove(); // Deleting the li element
 }
 
+// Function to view data in page STARTS
 function viewTodoData() {
   if (!(tempTodo.heading === "")) {
     addHeading.innerHTML = tempTodo.heading;
@@ -113,68 +113,64 @@ function viewTodoData() {
     tempTodo.body.map((bodyItem) => {
       const listItemExits = document.querySelector("#" + bodyItem.id);
       if (listItemExits === null) {
-        const listItem = document.createElement("li");
-        listItem.setAttribute("id", bodyItem.id);
-        const checkIcon = document.createElement("i");
-        const listContent = document.createElement("span");
-        if (bodyItem.status === true) {
-          listItem.setAttribute("class", "completed");
-          checkIcon.setAttribute(
-            "class",
-            "check check-item fa fa-check-circle"
-          );
-          listContent.setAttribute("class", "list-item");
-        } else {
-          checkIcon.setAttribute(
-            "class",
-            "uncheck check-item fa fa-check-circle"
-          );
-          listContent.setAttribute("class", "list-item");
-        }
-        listContent.innerHTML = bodyItem.listItem;
-        const editIcon = document.createElement("i");
-        editIcon.setAttribute("class", "edit fa fa-pencil");
-        editIcon.setAttribute("title", "Edit");
-        const deleteIcon = document.createElement("i");
-        deleteIcon.setAttribute("class", "delete fa fa-trash-o");
-        deleteIcon.setAttribute("title", "Delete");
-        listItem.insertAdjacentElement("beforeend", checkIcon);
-        listItem.insertAdjacentElement("beforeend", listContent);
-        listItem.insertAdjacentElement("beforeend", editIcon);
-        listItem.insertAdjacentElement("beforeend", deleteIcon);
-        todoList.insertAdjacentElement("beforeend", listItem);
-      } else {
-        // Check for changes here
+        inputListItem(bodyItem);
       }
     });
   }
+
   // For editing listItems
-  const checkItem = document.querySelectorAll(".check-item");
-  const editItem = document.querySelectorAll(".edit");
-  const deleteItem = document.querySelectorAll(".delete");
+  let checkItem = document.querySelectorAll(".check-item");
+  let editItem = document.querySelectorAll(".edit");
+  let deleteItem = document.querySelectorAll(".delete");
+  // Function to fetch list Selectors ENDS
+  // For editing listItems
   if (checkItem) {
     checkItem.forEach((check) => {
-      check.addEventListener("click", function () {
-        checkItemFunction(check);
-      });
+      check.addEventListener("click", checkItemFunction);
     });
   }
   if (editItem) {
     editItem.forEach((edit) => {
-      edit.addEventListener("click", function () {
-        editItemFunction(edit);
-      });
+      edit.addEventListener("click", editItemFunction);
     });
   }
   if (deleteItem) {
     deleteItem.forEach((del) => {
-      del.addEventListener("click", function () {
-        deleteItemFunction(del);
-      });
+      del.addEventListener("click", deleteItemFunction);
     });
   }
-}
+} // Function to view data in page ENDS
 
+// Function to Input list element STARTS
+function inputListItem(bodyItem) {
+  const listItem = document.createElement("li");
+  listItem.setAttribute("id", bodyItem.id);
+  const checkIcon = document.createElement("i");
+  const listContent = document.createElement("span");
+  if (bodyItem.status === true) {
+    listItem.setAttribute("class", "completed");
+    checkIcon.setAttribute("class", "check check-item fa fa-check-circle");
+    listContent.setAttribute("class", "list-item");
+  } else {
+    listItem.setAttribute("class", "");
+    checkIcon.setAttribute("class", "uncheck check-item fa fa-check-circle");
+    listContent.setAttribute("class", "list-item");
+  }
+  listContent.innerHTML = bodyItem.listItem;
+  const editIcon = document.createElement("i");
+  editIcon.setAttribute("class", "edit fa fa-pencil");
+  editIcon.setAttribute("title", "Edit");
+  const deleteIcon = document.createElement("i");
+  deleteIcon.setAttribute("class", "delete fa fa-trash-o");
+  deleteIcon.setAttribute("title", "Delete");
+  listItem.insertAdjacentElement("beforeend", checkIcon);
+  listItem.insertAdjacentElement("beforeend", listContent);
+  listItem.insertAdjacentElement("beforeend", editIcon);
+  listItem.insertAdjacentElement("beforeend", deleteIcon);
+  todoList.insertAdjacentElement("beforeend", listItem);
+} // Function to Input list element ENDS
+
+// Callback when page Loads
 window.addEventListener("load", (event) => {
   // If tempTodo in not empty
   viewTodoData();
