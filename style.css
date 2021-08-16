@@ -99,13 +99,16 @@ html {
   position: relative;
   font-size: 22px;
   width: 100%;
+  min-height: 20px;
   background-color: #fff;
   border-radius: 20px;
   margin-bottom: 5px;
   padding: 5px;
 }
 .list-item {
-  padding-left: 25px;
+  margin-left: 25px;
+  margin-right: 50px;
+  min-height: 50px;
 }
 /* [id*="item"] {
   color: red;

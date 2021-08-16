@@ -92,9 +92,18 @@ function checkItemFunction(e) {
   });
 }
 
-function editItemFunction(editItem) {
-  console.log(editItem.parentNode);
-  console.log("edit");
+function editItemFunction(e) {
+  // console.log(e);
+  editSpan = e.path[0].previousSibling;
+  editId = e.path[1].getAttribute("id").split("-")[1] - 1;
+  if (editSpan.getAttribute("contenteditable") === "true") {
+    tempTodo.body[editId] = editSpan.innerHTML;
+    editSpan.setAttribute("contenteditable", "false");
+    // console.log("done");
+  } else {
+    editSpan.setAttribute("contenteditable", "true");
+    editSpan.focus();
+  }
 }
 function deleteItemFunction(e) {
   // console.log(e);
