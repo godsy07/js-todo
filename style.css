@@ -9,7 +9,7 @@ html {
 }
 .container {
   width: 600px;
-  min-height: 200px;
+  min-height: 100px;
   background: rgb(185, 66, 201);
   margin: auto;
   margin-top: 80px;
@@ -17,37 +17,6 @@ html {
   border: 1px solid black;
   border-radius: 60px;
   position: relative;
-}
-.clear {
-  position: absolute;
-  right: 25px;
-  top: 12px;
-  background: rgb(100, 100, 100);
-  color: #fff;
-  text-align: center;
-  height: 20px;
-  width: 20px;
-  padding: 5px;
-  border-radius: 50%;
-}
-.icon {
-  text-align: center;
-  margin: auto;
-  font-size: 22px;
-}
-.clear:hover {
-  cursor: pointer;
-  border: 1px solid rgb(200, 200, 200);
-  border-radius: 50%;
-  animation: spin 1s linear 1;
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 /* Heading Starts */
 .head {
@@ -64,7 +33,6 @@ html {
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   padding: 5px;
-  /* border: 1px solid black; */
   outline: none;
   border-radius: 10px;
 }
@@ -106,16 +74,14 @@ html {
   padding: 5px;
 }
 .list-item {
+  display: block;
+  box-sizing: border-box;
+  width: 340px;
   margin-left: 25px;
   margin-right: 50px;
-  min-height: 50px;
+  min-height: 25px;
 }
-/* [id*="item"] {
-  color: red;
-} */
-/* [id^="item"] {
-  color: yellow;
-} */
+
 .check {
   color: rgb(75, 250, 21);
   height: 25px;

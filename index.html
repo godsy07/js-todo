@@ -1,48 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
 
-    <link rel="stylesheet" href="./style.css" />
-    <title>Todo Application</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="clear">
-        <i class="fa icon">&#xf021;</i>
-      </div>
-      <div class="head">
-        <span class="add-heading" contenteditable="false">Your Heading</span>
-        <i class="edit-heading fa fa-check-circle" title="Edit Heading"></i>
-      </div>
-      <div class="content">
-        <ul class="todo-list">
-          <!-- Sample elements -->
-          <!-- <li id="item1">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <link rel="stylesheet" href="./style.css" />
+  <title>Todo Application</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="head">
+      <span class="add-heading" contenteditable="false">Your Heading</span>
+      <i class="edit-heading fa fa-check-circle" title="Edit Heading"></i>
+    </div>
+    <div class="content">
+      <ul class="todo-list">
+        <!-- Sample elements -->
+        <!-- 
+          <li id="item1">
             <i class="check fa fa-check-circle"></i>
             <span class="list-item">list1</span>
-            <i class="edit fa fa-pencil" title="Edit"></i
-            ><i class="delete fa fa-trash-o" title="Delete"></i>
-          </li>
-          <li id="item2">
-            <i class="check fa fa-check-circle"></i>
-            <span class="list-item">list2</span>
-            <i class="edit fa fa-pencil" title="Edit"></i
-            ><i class="delete fa fa-trash-o" title="Delete"></i>
-          </li> -->
-        </ul>
-      </div>
-      <div class="input-list">
-        <i class="fa fa-plus-circle"></i>
-        <input class="input-item" type="text" placeholder="Enter list Item" />
-      </div>
+            <i class="edit fa fa-pencil" title="Edit"></i><i class="delete fa fa-trash-o" title="Delete"></i>
+          </li> 
+        -->
+      </ul>
     </div>
-    <script src="./main.js"></script>
-  </body>
+    <div class="input-list">
+      <i class="fa fa-plus-circle"></i>
+      <input class="input-item" type="text" placeholder="Enter list Item" />
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+
 </html>

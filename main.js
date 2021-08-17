@@ -1,10 +1,10 @@
 // Variable to store todo
 let tempTodo = {
   id: "head-1",
-  heading: "Test Heading",
+  heading: "Your Heading",
   body: [
-    { id: "item-1", listItem: "Attend Meeting", status: false },
-    { id: "item-2", listItem: "Run a mile", status: true },
+    // { id: "item-1", listItem: "Attend Meeting", status: false },
+    // { id: "item-2", listItem: "Run a mile", status: true },
     // { id: "item-3", listItem: "Go for a walk", status: false },
     // { id: "item-4", listItem: "Learn WebDev", status: false },
   ],
@@ -23,6 +23,7 @@ inputItem.addEventListener("keypress", inputItemFunction);
 
 // Functions
 function changeToEditingHead() {
+  // For editing Heading of Todo
   if (addHeading.getAttribute("contenteditable") === "false") {
     addHeading.setAttribute("contenteditable", "true");
     editHeading.setAttribute(
@@ -33,7 +34,12 @@ function changeToEditingHead() {
     addHeading.focus();
     // addHeading.select();
   } else if (addHeading.getAttribute("contenteditable") === "true") {
-    tempTodo.id = "heading-" + 1;
+    if (addHeading.innerHTML === "") {
+      alert("Please enter a heading");
+      addHeading.focus();
+      return;
+    }
+    tempTodo.id = "head-" + 1;
     tempTodo.heading = addHeading.innerHTML;
     addHeading.setAttribute("style", "boder: none");
     addHeading.setAttribute("contenteditable", "false");
@@ -42,6 +48,7 @@ function changeToEditingHead() {
 }
 
 function addListItem() {
+  // For adding list Item
   if (inputItem.value === "") {
     alert("Enter a List Item");
     return;
@@ -59,13 +66,14 @@ function addListItem() {
 }
 
 function inputItemFunction(e) {
+  // For adding list item when enter key is pressed
   if (e.keyCode === 13) {
     addListItem();
   }
 }
 
 function checkItemFunction(e) {
-  // console.log(e);
+  // For checking and unchecking completed todos
   const listId = e.path[1].getAttribute("id");
   tempTodo.body.map((el) => {
     if (el.id === listId) {
@@ -78,7 +86,6 @@ function checkItemFunction(e) {
           "class",
           "check check-item fa fa-check-circle"
         );
-        // listElement.nextSibling.setAttribute("class", "list-item completed");
       } else {
         // console.log("false");
         listElement.parentNode.setAttribute("class", "");
@@ -86,27 +93,25 @@ function checkItemFunction(e) {
           "class",
           "uncheck check-item fa fa-check-circle"
         );
-        // listElement.nextSibling.setAttribute("class", "list-item");
       }
     }
   });
 }
 
 function editItemFunction(e) {
-  // console.log(e);
+  // For editing list items of TodoList
   editSpan = e.path[0].previousSibling;
   editId = e.path[1].getAttribute("id").split("-")[1] - 1;
   if (editSpan.getAttribute("contenteditable") === "true") {
     tempTodo.body[editId] = editSpan.innerHTML;
-    editSpan.setAttribute("contenteditable", "false");
-    // console.log("done");
+    editSpan.setAttribute("contenteditable", "false"); // Edit done
   } else {
     editSpan.setAttribute("contenteditable", "true");
     editSpan.focus();
   }
 }
 function deleteItemFunction(e) {
-  // console.log(e);
+  // For deleting list item from TodoList
   delId = e.path[1].getAttribute("id").split("-")[1] - 1; // Fetch index of array
   tempTodo.body.splice(delId, 1); // Delete data from tempTodo variable
   e.path[1].remove(); // Deleting the li element
@@ -114,7 +119,9 @@ function deleteItemFunction(e) {
 
 // Function to view data in page STARTS
 function viewTodoData() {
+  // For viewing TodoList items dynamically
   if (!(tempTodo.heading === "")) {
+    // Set up local storage
     addHeading.innerHTML = tempTodo.heading;
     addHeading.setAttribute("id", tempTodo.id);
   }
@@ -127,12 +134,11 @@ function viewTodoData() {
     });
   }
 
-  // For editing listItems
+  // For editing listItems, creating dynamic selectors
   let checkItem = document.querySelectorAll(".check-item");
   let editItem = document.querySelectorAll(".edit");
   let deleteItem = document.querySelectorAll(".delete");
-  // Function to fetch list Selectors ENDS
-  // For editing listItems
+  //  For event listeners using dynamic selectors
   if (checkItem) {
     checkItem.forEach((check) => {
       check.addEventListener("click", checkItemFunction);
@@ -152,6 +158,7 @@ function viewTodoData() {
 
 // Function to Input list element STARTS
 function inputListItem(bodyItem) {
+  // For insertion of new HTML elements when new todos are added
   const listItem = document.createElement("li");
   listItem.setAttribute("id", bodyItem.id);
   const checkIcon = document.createElement("i");
@@ -177,7 +184,8 @@ function inputListItem(bodyItem) {
   listItem.insertAdjacentElement("beforeend", editIcon);
   listItem.insertAdjacentElement("beforeend", deleteIcon);
   todoList.insertAdjacentElement("beforeend", listItem);
-} // Function to Input list element ENDS
+}
+// Function to Input list element ENDS
 
 // Callback when page Loads
 window.addEventListener("load", (event) => {
